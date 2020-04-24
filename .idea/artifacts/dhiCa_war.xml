@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="dhiCa:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="dhiCa.war">
+      <element id="artifact" artifact-name="dhiCa:war exploded" />
+    </root>
+  </artifact>
+</component>
