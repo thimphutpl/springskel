@@ -18,11 +18,6 @@
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
-        </li>
     </ul>
 
     <!-- right navbar links -->
@@ -40,16 +35,9 @@
                     class="fa fa-key fa-fw"></i> Change Password</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a class="nav-link" href="javascript:$('#logoutForm').submit();"><i
+            <a class="nav-link" href="javascript:$('#logoutForm').submit();" ><i
                     class="fa fa-power-off"></i> Logout</a>
         </li>
     </ul>
 
 </nav>
-<!-- The Right Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Content of the sidebar goes here -->
-</aside>
-<!-- The sidebar's background -->
-<!-- This div must placed right after the sidebar for it to work-->
-<div class="control-sidebar-bg"></div>

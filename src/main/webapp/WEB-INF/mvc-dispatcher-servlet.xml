@@ -1,28 +1,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:security="http://www.springframework.org/schema/security"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-context.xsd
                             http://www.springframework.org/schema/mvc
-                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
-                            http://www.springframework.org/schema/tx
-                            http://www.springframework.org/schema/tx/spring-tx.xsd
-                            http://www.springframework.org/schema/aop
-                            http://www.springframework.org/schema/aop/spring-aop.xsd
-                            http://www.springframework.org/schema/security
-                            http://www.springframework.org/schema/security/spring-security.xsd
-                            ">
+                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:annotation-config/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
+
     <context:component-scan base-package="dhi.ca.ttpl"/>
+
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
             <property name="cacheSeconds" value="0"/>
@@ -32,48 +24,41 @@
         </bean>
     </mvc:interceptors>
 
-    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
-    <aop:aspectj-autoproxy/>
-
-    <!--Load Resource Files-->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
-
+    <!--<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>-->
+    <!--<aop:aspectj-autoproxy/>-->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--Image Spring Upload Config-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <import resource="configuration/internationalization.xml"/>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
-    <!--Database connection and hibernatate -->
-    <import resource="config/connection-string.xml"/>
-    <!--Bean Configuration in Current User-->
-    <bean class="dhi.ca.ttpl.library.helper.CurrentUser" id="currentUser" scope="request"/>
 
-    <!--Configure Messages-->
-    <import resource="config/internationalzation.xml"/>
+    <import resource="configuration/connection-string.xml"/>
+    <import resource="configuration/data-context.xml"/>
 
-    <!--Security Configuration-->
-    <import resource="config/spring-security.xml"/>
+    <import resource="configuration/spring-security.xml"/>
 
 
-
+    <bean class="dhi.ca.ttpl.helper.CurrentUser" id="currentUser" scope="request"/>
 
     <!--Bean Configuration in Create User Controller-->
-    <bean class="dhi.ca.ttpl.web.controller.CreateUserController" id="createUserController">
+    <bean class="dhi.ca.ttpl.auth.controller.CreateUserController" id="createUserController">
         <property name="createUserService" ref="createUserService"/>
     </bean>
 
     <!--Bean Configuration in Create User Service-->
-    <bean class="dhi.ca.ttpl.service.CreateUserService" id="createUserService">
+    <bean class="dhi.ca.ttpl.auth.service.CreateUserService" id="createUserService">
         <property name="passwordEncoder" ref="passwordEncoder"/>
     </bean>
 
     <!--Bean Configuration in Change Password Service-->
-    <bean id="changePasswordService" class="dhi.ca.ttpl.service.auth.ChangePasswordService">
+    <bean id="changePasswordService" class="dhi.ca.ttpl.auth.service.ChangePasswordService">
         <property name="passwordEncoder" ref="passwordEncoder"/>
     </bean>
+
 </beans>

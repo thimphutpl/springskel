@@ -27,7 +27,7 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Sign in to start your session ok</p>
 
             <form action="<c:url value='/auth'/>" method="post">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

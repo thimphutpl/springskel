@@ -8,7 +8,7 @@
     <name>dhiCa</name>
 
     <!--<properties>-->
-        <!--<spring.version>4.1.1.RELEASE</spring.version>-->
+    <!--<spring.version>4.1.1.RELEASE</spring.version>-->
     <!--</properties>-->
     <properties>
         <java.version>1.8</java.version>
